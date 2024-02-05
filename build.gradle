@@ -36,6 +36,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator' // 엑츄에이터
     implementation 'io.micrometer:micrometer-registry-prometheus'
 
+    testImplementation 'org.mockito:mockito-core:5.10.0'
+
+    // AWS S3
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
+    // Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
 
 }
 

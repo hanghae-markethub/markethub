@@ -2,27 +2,36 @@ package org.hanghae.markethub.domain.cart.entity;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hanghae.markethub.domain.purchase.entity.Purchase;
+import org.hanghae.markethub.domain.cart.dto.CartRequestDto;
+import org.hanghae.markethub.domain.item.entity.Item;
+import org.hanghae.markethub.domain.user.entity.User;
+
+import org.hanghae.markethub.global.constant.Status;
 import org.hanghae.markethub.global.date.BaseTimeEntity;
 
 @Getter
 @Entity
 @NoArgsConstructor
 @Table(name = "cart")
+@AllArgsConstructor
+@Builder
 public class Cart extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartId;
 
-    @Column(nullable = false)
-    private String userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(nullable = false)
-    private String itemId;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 
     @Column(nullable = false)
     private int price;
@@ -34,9 +43,18 @@ public class Cart extends BaseTimeEntity {
     private String address;
 
     @Column(nullable = false)
-    private Long point;
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 
-	@ManyToOne
- 	@JoinColumn(name = "purchase_id")
-	private Purchase purchase;
+
+    public void update(CartRequestDto requestDto){
+        for (int i = 0; i < requestDto.getItem().size(); i++){
+            this.item = requestDto.getItem().get(i);
+            this.quantity = requestDto.getQuantity().get(i);
+        }
+    }
+
+    public void delete() {
+        this.status = Status.DELETED;
+    }
 }
