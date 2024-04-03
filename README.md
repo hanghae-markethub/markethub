@@ -17,11 +17,6 @@
 - 백만건 이상의 대용량 트래픽을 처리하는 이커머스 쇼핑몰
 
 ---
-
-## 🥃 도메인 주소
-
-[markethubsite.shop](https://markethubsite.shop/)
-
 ## 🥃 Github 주소
 
 ‣https://github.com/hanghae-markethub/markethub
