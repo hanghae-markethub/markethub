@@ -32,12 +32,11 @@
 | 할인 특가 | Task Scheduler를 사용하여 특정 시간마다 할인&특가 상품 생성 |
 | --- | --- |
 | 비회원 장바구니 | Redis를 활용하여 비회원으로 장바구니 담기까지 가능, 결제는 회원가입을 유도하기위해 회원만 가능하게 설계 |
-| 인증인가 | JWT, Security, Redis를 활용하여 Access Token, Refresh Token 구현 (CSRF, XSS를 통한 토큰탈취 대비) Access : 1시간, Refresh : 2주 |
+| 인증인가 | JWT, Security, Redis를 활용하여 Access Token, Refresh Token 구현 (CSRF, XSS를 통한 토큰탈취 대비) |
 | 결제 구현 | IamPort API를 사용하여 결제 API 구성, Redisson을 활용하여 RLock구현으로 동시성 제어, Request 변조공격을 대비한 가격 검증로직 작성 |
 | HTTPS 적용 | HTTPS를 적용해 도메인 보안성/노출순위 향상 |
-| 상품 검색 및 조회  | 서버 배포 시 Post Constructor를 사용하여 DB의 데이터를 Elastic Search와 Redis로 마이그레이션하고,  Elastic Search를 사용하여 키워드 를 포함하는 
-모든 상품에 대해 페이징 된 검색기능을 제공 및 Redis를 활용하여 
-아이템 검색성능을 최적화 하고 이후에 이루어진 수정, 삭제는 자동으로 업데이트되게 구현 |
+| 상품 검색 및 조회  | 서버 배포시 DB의 데이터를 Elastic Search와 Redis로 마이그레이션하고,  Elastic Search를 사용하여 키워드기반 페이징 검색기능 제공 및
+Redis를 활용하여 아이템 검색성능 향상 및 데이터의 수정 시 Redis 직접 수정을 통해 캐시 불일치 해결 |
 
 # 트러블 슈팅 및 기술적 의사 결정 👇
 ![image](https://github.com/hanghae-markethub/markethub/assets/140101271/578da39e-5fa3-4ea4-86df-231d8c06c5f0)
